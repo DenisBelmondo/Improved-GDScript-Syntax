@@ -120,7 +120,7 @@
         },
         "function-declarations": {
             "begin": "(?<=\\bfunc\\b)",
-            "end": "(?=:)",
+            "end": "(?=$|:)",
             "patterns": [
                 {
                     "begin": "(?<=\\bfunc\\b)",
@@ -142,7 +142,7 @@
                             "patterns": [
                                 {
                                     "begin": "(?<=:)",
-                                    "end": "(?=[:,\\)])",
+                                    "end": "(?=$|[:,\\)])",
                                     "patterns": [
                                         {
                                             "include": "#keywords"
