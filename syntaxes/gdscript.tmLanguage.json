@@ -1,0 +1,363 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "GDScript",
+    "patterns": [
+        {
+            "match": "(@)(\\w+)",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.annotation.gdscript"
+                },
+                "2" : {
+                    "name": "storage.type.annotation.gdscript"
+                }
+            }
+        },
+        {
+            "include": "#constants-language"
+        },
+        {
+            "include": "#expression-operators"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#literals"
+        },
+        {
+            "include": "#storage-modifiers"
+        },
+        {
+            "include": "#storage-types"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#support-functions"
+        },
+        {
+            "name": "variable.language.self.gdscript",
+            "match": "\\b(self)\\b"
+        },
+        {
+            "name": "entity.name.class.gdscript",
+            "match": "\\b[A-Z]\\w*\\b"
+        },
+        {
+            "name": "entity.name.function.gdscript",
+            "match": "\\b[_[:alpha:]][_[:alnum:]]+(?=\\s*\\()\\b"
+        },
+        {
+            "name": "variable.readwrite.other.gdscript",
+            "match": "\\b[_[:alpha:]][_[:alnum:]]+\\b"
+        }
+    ],
+    "repository": {
+        "constants-language": {
+            "patterns": [
+                {
+                    "name": "constant.language.$1.gdscript",
+                    "match": "\\b(INF|NAN|PI|TAU|null)\\b"
+                }
+            ]
+        },
+        "expression-operators": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.assignment.compound.gdscript",
+                    "match": "\\*=|/=|%=|\\+=|-=|\\?\\?="
+                },
+                {
+                    "name": "keyword.operator.assignment.compound.bitwise.gdscript",
+                    "match": "\\&=|\\^=|<<=|>>=|\\|="
+                },
+                {
+                    "name": "keyword.operator.bitwise.shift.gdscript",
+                    "match": "<<|>>"
+                },
+                {
+                    "name": "keyword.operator.comparison.gdscript",
+                    "match": "==|!="
+                },
+                {
+                    "name": "keyword.operator.relational.gdscript",
+                    "match": "<=|>=|<|>"
+                },
+                {
+                    "name": "keyword.operator.logical.gdscript",
+                    "match": "\\!|&&|\\|\\|"
+                },
+                {
+                    "name": "keyword.operator.bitwise.gdscript",
+                    "match": "\\&|~|\\^|\\|"
+                },
+                {
+                    "name": "keyword.operator.assignment.gdscript",
+                    "match": "\\="
+                },
+                {
+                    "name": "keyword.operator.decrement.gdscript",
+                    "match": "--"
+                },
+                {
+                    "name": "keyword.operator.increment.gdscript",
+                    "match": "\\+\\+"
+                },
+                {
+                    "name": "keyword.operator.arithmetic.gdscript",
+                    "match": "%|\\*|/|-|\\+"
+                },
+                {
+                    "name": "keyword.operator.null-coalescing.gdscript",
+                    "match": "\\?\\?"
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.$1.gdscript",
+                    "match": "\\b(await|break|continue|else|for|elif|if|match|pass|return|while|yield)\\b"
+                },
+                {
+                    "name": "keyword.other.$1.gdscript",
+                    "match": "\\b(as|breakpoint|class_name|extends|get|is|setget|set|tool)\\b"
+                },
+                {
+                    "name": "keyword.type.$1.gdscript",
+                    "match": "\\b(bool|int|void)\\b"
+                }
+            ]
+        },
+        "boolean-literals": {
+            "patterns": [
+                {
+                    "name": "constant.language.boolean.true.gdscript",
+                    "match": "\\btrue\\b"
+                },
+                {
+                    "name": "constant.language.boolean.false.gdscript",
+                    "match": "\\bfalse\\b"
+                }
+            ]
+        },
+        "null-literals": {
+            "name": "constant.language.null.gdscript",
+            "match": "\\bnull\\b"
+        },
+        "numeric-literals": {
+            "match": "(?<!\\w)\\.?\\d(?:(?:[0-9a-zA-Z_\\.]|_)|(?<=[eE])[+-])*",
+            "captures": {
+                "0": {
+                    "patterns": [
+                        {
+                            "begin": "(?=.)",
+                            "end": "$",
+                            "patterns": [
+                                {
+                                    "match": "(\\G(?=[0-9.])(?!0[xXbB]))([0-9](?:[0-9]|((?<=[0-9a-fA-F])_(?=[0-9a-fA-F])))*)?((?:(?<=[0-9])|\\.(?=[0-9])))([0-9](?:[0-9]|((?<=[0-9a-fA-F])_(?=[0-9a-fA-F])))*)?((?<!_)([eE])(\\+?)(\\-?)((?:[0-9](?:[0-9]|(?:(?<=[0-9a-fA-F])_(?=[0-9a-fA-F])))*)))?([fFdDmM](?!\\w))?$",
+                                    "captures": {
+                                        "2": {
+                                            "name": "constant.numeric.decimal.gdscript",
+                                            "patterns": [
+                                                {
+                                                    "match": "(?<=[0-9a-fA-F])_(?=[0-9a-fA-F])",
+                                                    "name": "constant.numeric.other.separator.thousands.gdscript"
+                                                }
+                                            ]
+                                        },
+                                        "3": {
+                                            "name": "constant.numeric.other.separator.thousands.gdscript"
+                                        },
+                                        "4": {
+                                            "name": "constant.numeric.other.separator.decimals.gdscript"
+                                        },
+                                        "5": {
+                                            "name": "constant.numeric.decimal.gdscript",
+                                            "patterns": [
+                                                {
+                                                    "match": "(?<=[0-9a-fA-F])_(?=[0-9a-fA-F])",
+                                                    "name": "constant.numeric.other.separator.thousands.gdscript"
+                                                }
+                                            ]
+                                        },
+                                        "6": {
+                                            "name": "constant.numeric.other.separator.thousands.gdscript"
+                                        },
+                                        "8": {
+                                            "name": "constant.numeric.other.exponent.gdscript"
+                                        },
+                                        "9": {
+                                            "name": "keyword.operator.arithmetic.gdscript"
+                                        },
+                                        "10": {
+                                            "name": "keyword.operator.arithmetic.gdscript"
+                                        },
+                                        "11": {
+                                            "name": "constant.numeric.decimal.gdscript",
+                                            "patterns": [
+                                                {
+                                                    "match": "(?<=[0-9a-fA-F])_(?=[0-9a-fA-F])",
+                                                    "name": "constant.numeric.other.separator.thousands.gdscript"
+                                                }
+                                            ]
+                                        },
+                                        "12": {
+                                            "name": "constant.numeric.other.suffix.gdscript"
+                                        }
+                                    }
+                                },
+                                {
+                                    "match": "(\\G0[bB])([01_](?:[01_]|((?<=[0-9a-fA-F])_(?=[0-9a-fA-F])))*)((?:(?:(?:(?:(?:[uU]|[uU]l)|[uU]L)|l[uU]?)|L[uU]?)|[fFdDmM])(?!\\w))?$",
+                                    "captures": {
+                                        "1": {
+                                            "name": "constant.numeric.other.preffix.binary.gdscript"
+                                        },
+                                        "2": {
+                                            "name": "constant.numeric.binary.gdscript",
+                                            "patterns": [
+                                                {
+                                                    "match": "(?<=[0-9a-fA-F])_(?=[0-9a-fA-F])",
+                                                    "name": "constant.numeric.other.separator.thousands.gdscript"
+                                                }
+                                            ]
+                                        },
+                                        "3": {
+                                            "name": "constant.numeric.other.separator.thousands.gdscript"
+                                        },
+                                        "4": {
+                                            "name": "constant.numeric.other.suffix.gdscript"
+                                        }
+                                    }
+                                },
+                                {
+                                    "match": "(\\G0[xX])([0-9a-fA-F](?:[0-9a-fA-F]|((?<=[0-9a-fA-F])_(?=[0-9a-fA-F])))*)((?:(?:(?:(?:(?:[uU]|[uU]l)|[uU]L)|l[uU]?)|L[uU]?)|[fFdDmM])(?!\\w))?$",
+                                    "captures": {
+                                        "1": {
+                                            "name": "constant.numeric.other.preffix.hex.gdscript"
+                                        },
+                                        "2": {
+                                            "name": "constant.numeric.hex.gdscript",
+                                            "patterns": [
+                                                {
+                                                    "match": "(?<=[0-9a-fA-F])_(?=[0-9a-fA-F])",
+                                                    "name": "constant.numeric.other.separator.thousands.gdscript"
+                                                }
+                                            ]
+                                        },
+                                        "3": {
+                                            "name": "constant.numeric.other.separator.thousands.gdscript"
+                                        },
+                                        "4": {
+                                            "name": "constant.numeric.other.suffix.gdscript"
+                                        }
+                                    }
+                                },
+                                {
+                                    "match": "(\\G(?=[0-9.])(?!0[xXbB]))([0-9](?:[0-9]|((?<=[0-9a-fA-F])_(?=[0-9a-fA-F])))*)((?<!_)([eE])(\\+?)(\\-?)((?:[0-9](?:[0-9]|(?:(?<=[0-9a-fA-F])_(?=[0-9a-fA-F])))*)))?((?:(?:(?:(?:(?:[uU]|[uU]l)|[uU]L)|l[uU]?)|L[uU]?)|[fFdDmM])(?!\\w))?$",
+                                    "captures": {
+                                        "2": {
+                                            "name": "constant.numeric.decimal.gdscript",
+                                            "patterns": [
+                                                {
+                                                    "match": "(?<=[0-9a-fA-F])_(?=[0-9a-fA-F])",
+                                                    "name": "constant.numeric.other.separator.thousands.gdscript"
+                                                }
+                                            ]
+                                        },
+                                        "3": {
+                                            "name": "constant.numeric.other.separator.thousands.gdscript"
+                                        },
+                                        "5": {
+                                            "name": "constant.numeric.other.exponent.gdscript"
+                                        },
+                                        "6": {
+                                            "name": "keyword.operator.arithmetic.gdscript"
+                                        },
+                                        "7": {
+                                            "name": "keyword.operator.arithmetic.gdscript"
+                                        },
+                                        "8": {
+                                            "name": "constant.numeric.decimal.gdscript",
+                                            "patterns": [
+                                                {
+                                                    "match": "(?<=[0-9a-fA-F])_(?=[0-9a-fA-F])",
+                                                    "name": "constant.numeric.other.separator.thousands.gdscript"
+                                                }
+                                            ]
+                                        },
+                                        "9": {
+                                            "name": "constant.numeric.other.suffix.gdscript"
+                                        }
+                                    }
+                                },
+                                {
+                                    "match": "(?:(?:[0-9a-zA-Z_\\.]|_)|(?<=[eE])[+-])+",
+                                    "name": "invalid.illegal.constant.numeric.gdscript"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "literals": {
+            "patterns": [
+                {
+                    "include": "#boolean-literals"
+                },
+                {
+                    "include": "#null-literals"
+                },
+                {
+                    "include": "#numeric-literals"
+                }
+            ]
+        },
+        "storage-modifiers": {
+            "name": "storage.modifier.$1.gdscript",
+            "match": "\\b(const|export|mastersync|master|onready|puppetsync|puppet|remotesync|remote|signal|static)\\b"
+        },
+        "storage-types": {
+            "name": "storage.type.$1.gdscript",
+            "match": "\\b(class|enum|func|var)\\b"
+        },
+        "strings": {
+            "patterns": [
+                {
+                    "name": "string.quoted.double.gdscript",
+                    "begin": "\"",
+                    "end": "\"",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.gdscript",
+                            "match": "\\\\."
+                        }
+                    ]
+                },
+                {
+                    "name": "string.quoted.single.gdscript",
+                    "begin": "'",
+                    "end": "'",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.gdscript",
+                            "match": "\\\\."
+                        }
+                    ]
+                }
+            ]
+        },
+        "support-functions": {
+            "patterns": [
+                {
+                    "name": "support.function.$1.gdscript",
+                    "match": "\\b(assert|preload)\\b"
+                }
+            ]
+        }
+    },
+    "scopeName": "source.gdscript"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "improved-gdscript-syntax",
+  "displayName": "Improved GDScript Syntax",
+  "description": "Better tmgrammar for GDScript",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "gdscript",
+      "aliases": ["GDScript", "gdscript"],
+      "extensions": [".gd"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "gdscript",
+      "scopeName": "source.gdscript",
+      "path": "./syntaxes/gdscript.tmLanguage.json"
+    }]
+  }
+}
