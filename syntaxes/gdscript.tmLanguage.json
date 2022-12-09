@@ -20,6 +20,9 @@
             "include": "#expression-operators"
         },
         {
+            "include": "#function-declarations"
+        },
+        {
             "include": "#keywords"
         },
         {
@@ -112,6 +115,64 @@
                 {
                     "name": "keyword.operator.null-coalescing.gdscript",
                     "match": "\\?\\?"
+                }
+            ]
+        },
+        "function-declarations": {
+            "begin": "(?<=\\bfunc\\b)",
+            "end": "(?=:)",
+            "patterns": [
+                {
+                    "begin": "(?<=\\bfunc\\b)",
+                    "end": "(?=\\))",
+                    "patterns": [
+                        {
+                            "begin": "(?<=\\bfunc\\b)",
+                            "end": "(?=\\()",
+                            "patterns": [
+                                {
+                                    "name": "entity.name.function.gdscript",
+                                    "match": "\\b[_[:alpha:]][_[:alnum:]]+\\b"
+                                }
+                            ]
+                        },
+                        {
+                            "begin": "(?<=\\()",
+                            "end": "(?=\\))",
+                            "patterns": [
+                                {
+                                    "begin": "(?<=:)",
+                                    "end": "(?=[:,\\)])",
+                                    "patterns": [
+                                        {
+                                            "include": "#keywords"
+                                        },
+                                        {
+                                            "name": "entity.name.class.gdscript",
+                                            "match": "\\b[_[:alpha:]][_[:alnum:]]+\\b"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "variable.parameter.gdscript",
+                                    "match": "\\b[_[:alpha:]][_[:alnum:]]+\\b"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "begin": "(?<=->)",
+                    "end": "(?=:)",
+                    "patterns": [
+                        {
+                            "include": "#keywords"
+                        },
+                        {
+                            "name": "entity.name.class.gdscript",
+                            "match": "\\b[_[:alpha:]][_[:alnum:]]+\\b"
+                        }
+                    ]
                 }
             ]
         },
