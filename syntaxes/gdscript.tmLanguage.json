@@ -9,7 +9,7 @@
                     "name": "punctuation.definition.annotation.gdscript"
                 },
                 "2" : {
-                    "name": "storage.type.annotation.gdscript"
+                    "name": "storage.type.annotation.$2.gdscript"
                 }
             }
         },
@@ -188,7 +188,7 @@
                 },
                 {
                     "name": "keyword.type.$1.gdscript",
-                    "match": "\\b(bool|int|void)\\b"
+                    "match": "\\b(bool|float|int|void)\\b"
                 }
             ]
         },
