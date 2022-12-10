@@ -50,11 +50,11 @@
         },
         {
             "name": "entity.name.function.gdscript",
-            "match": "\\b[_[:alpha:]][_[:alnum:]]+(?=\\s*\\()\\b"
+            "match": "\\b[_[:alpha:]]+[_[:alnum:]]*(?=\\s*\\()\\b"
         },
         {
             "name": "variable.readwrite.other.gdscript",
-            "match": "\\b[_[:alpha:]][_[:alnum:]]+\\b"
+            "match": "\\b[_[:alpha:]]+[_[:alnum:]]*\\b"
         }
     ],
     "repository": {
@@ -132,7 +132,7 @@
                             "patterns": [
                                 {
                                     "name": "entity.name.function.gdscript",
-                                    "match": "\\b[_[:alpha:]][_[:alnum:]]+\\b"
+                                    "match": "\\b[_[:alpha:]]+[_[:alnum:]]*\\b"
                                 }
                             ]
                         },
@@ -149,13 +149,13 @@
                                         },
                                         {
                                             "name": "entity.name.class.gdscript",
-                                            "match": "\\b[_[:alpha:]][_[:alnum:]]+\\b"
+                                            "match": "\\b[_[:alpha:]]+[_[:alnum:]]*\\b"
                                         }
                                     ]
                                 },
                                 {
                                     "name": "variable.parameter.gdscript",
-                                    "match": "\\b[_[:alpha:]][_[:alnum:]]+\\b"
+                                    "match": "\\b[_[:alpha:]]+[_[:alnum:]]*\\b"
                                 }
                             ]
                         }
@@ -170,7 +170,7 @@
                         },
                         {
                             "name": "entity.name.class.gdscript",
-                            "match": "\\b[_[:alpha:]][_[:alnum:]]+\\b"
+                            "match": "\\b[_[:alpha:]]+[_[:alnum:]]*\\b"
                         }
                     ]
                 }
