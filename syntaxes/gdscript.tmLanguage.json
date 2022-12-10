@@ -3,6 +3,16 @@
     "name": "GDScript",
     "patterns": [
         {
+            "begin": "(?=\\#)",
+            "end": "(?=$)",
+            "patterns": [
+                {
+                    "match": ".*",
+                    "name": "comment.line.gdscript"
+                }
+            ]
+        },
+        {
             "match": "(@)(\\w+)",
             "captures": {
                 "1": {
