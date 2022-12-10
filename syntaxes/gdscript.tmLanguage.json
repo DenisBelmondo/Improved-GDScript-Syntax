@@ -51,8 +51,8 @@
             "include": "#support-functions"
         },
         {
-            "name": "variable.language.self.gdscript",
-            "match": "\\b(self)\\b"
+            "name": "variable.language.$1.gdscript",
+            "match": "\\b(self|super)\\b"
         },
         {
             "name": "entity.name.class.gdscript",
