@@ -3,31 +3,22 @@
     "name": "GDScript",
     "patterns": [
         {
-            "begin": "(?=\\#)",
-            "end": "(?=$)",
-            "patterns": [
-                {
-                    "match": ".*",
-                    "name": "comment.line.gdscript"
-                }
-            ]
+            "include": "#comments"
         },
         {
-            "match": "(@)(\\w+)",
-            "captures": {
-                "1": {
-                    "name": "punctuation.definition.annotation.gdscript"
-                },
-                "2" : {
-                    "name": "storage.type.annotation.$2.gdscript"
-                }
-            }
+            "include": "#annotations"
+        },
+        {
+            "include": "#node-literals"
         },
         {
             "include": "#constants-language"
         },
         {
             "include": "#expression-operators"
+        },
+        {
+            "include": "#variable-declarations"
         },
         {
             "include": "#function-declarations"
@@ -68,6 +59,94 @@
         }
     ],
     "repository": {
+        "comments": {
+            "begin": "(?=\\#)",
+            "end": "(?=$|;)",
+            "patterns": [
+                {
+                    "match": ".*",
+                    "name": "comment.line.gdscript"
+                }
+            ]
+        },
+        "annotations": {
+            "match": "(@)(\\w+)",
+            "captures": {
+                "1": {
+                    "name": "punctuation.separator.attribute-name.gdscript"
+                },
+                "2": {
+                    "name": "entity.other.attribute-name.$2.gdscript"
+                }
+            }
+        },
+        "node-literals": {
+            "patterns": [
+                {
+                    "begin": "\\$",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.separator.node-literal.gdscript"
+                        }
+                    },
+                    "end": "(?=$|;)",
+                    "patterns": [
+                        {
+                            "match": ".+(?<!;)",
+                            "name": "constant.other.node.gdscript"
+                        }
+                    ]
+                },
+                {
+                    "begin": "\\^",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.separator.node-path-literal.gdscript"
+                        }
+                    },
+                    "end": "(?=$|;)",
+                    "patterns": [
+                        {
+                            "match": ".+(?<!;)",
+                            "name": "constant.other.node-path.gdscript"
+                        }
+                    ]
+                },
+                {
+                    "begin": "\\@",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.separator.node-path-literal.gdscript"
+                        }
+                    },
+                    "end": "(?=$|;)",
+                    "patterns": [
+                        {
+                            "name": "constant.other.node-path.gdscript",
+                            "begin": "\"",
+                            "end": "\"",
+                            "patterns": [
+                                {
+                                    "name": "constant.character.escape.gdscript",
+                                    "match": "\\\\."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "constant.other.node-path.gdscript",
+                            "begin": "'",
+                            "end": "'",
+                            "patterns": [
+                                {
+                                    "name": "constant.character.escape.gdscript",
+                                    "match": "\\\\."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
         "constants-language": {
             "patterns": [
                 {
@@ -127,6 +206,8 @@
                     "match": "\\?\\?"
                 }
             ]
+        },
+        "variable-declarations": {
         },
         "function-declarations": {
             "begin": "(?<=\\bfunc\\b)",
